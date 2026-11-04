@@ -2,7 +2,7 @@
 
 ## Documentation result
 
-**PASS — final documentation review, 2026-11-04.** The package contains 30 Markdown
+**PASS — final documentation review, 2026-11-04.** The package contains 31 Markdown
 files, 60 decision records, 36 requirements, 28 acceptance scenarios and selected
 derived defaults. No outstanding product answer is needed to complete this baseline;
 stack/providers and deployment resources are intentionally deferred.
@@ -44,6 +44,12 @@ review PASS, including license preservation and delegated-default terminology.
 No nested conflicting instruction file was present.
 
 ## Product validation — Not run
+
+The reading-guide follow-up passed the documentation checker and Git whitespace
+check. A separate coverage check confirmed that the guide links to every other
+Markdown document under `docs/`. Manual review checked its reading paths, status
+explanations, and contact-visibility example against the canonical documents.
+This navigation addition changes no product decisions.
 
 No app implementation exists here. The [acceptance scenarios](acceptance-tests.md)
 must be executed after implementation. No browser UI, assistive-technology,

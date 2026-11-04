@@ -1,5 +1,8 @@
 # Documentation index
 
+Start with [How to read the documentation](reading-guide.md) for a suggested
+reading order, paths by task, status-label explanations, and a complete file map.
+
 Read the [repository overview](../README.md) and
 [recovery limits](sources/recovery-status.md) first. These documents combine a
 current confirmed baseline with clearly identified selected derived defaults and

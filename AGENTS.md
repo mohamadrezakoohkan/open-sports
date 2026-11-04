@@ -1,4 +1,4 @@
- # Repository guidance
+# Repository guidance
 
 Applies to the whole repository. This repository currently documents a product;
 product implementation requires a task that explicitly requests it.

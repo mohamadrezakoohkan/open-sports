@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-11-04 — documentation reading guide
+
+- Added `docs/reading-guide.md` at the owner's request, with a first-reading order,
+  paths by task, a complete document map, status and identifier explanations,
+  an evidence-to-test example, and maintenance guidance.
+- Linked the guide from both entry-point READMEs. Product decisions are unchanged.
+
 ## 2026-11-04 — initial documentation reconstruction
 
 - Recovered five user turns from the referenced conversation; recorded four

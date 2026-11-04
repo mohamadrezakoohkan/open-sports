@@ -703,3 +703,60 @@ This is an observation, not a user product decision.
 
 A local documentation commit/bundle can be delivered without pushing. The missing
 base prevents the requested PR workflow independently of connector write access.
+
+<a id="src-029"></a>
+## SRC-029 — research open-source backends with free cloud hosting
+
+Speaker: user in the current chat, 2026-11-04 (Europe/Madrid); message ID not supplied.
+
+> find open source backend technologies to support free cloud for mvp
+
+Interpretation: evaluate open-source backend technologies and free cloud options
+against this MVP. The assistant compared Neon, Supabase and Appwrite using official
+sources. Its preferred Neon stack was a Derived recommendation, not an adopted
+choice. Provider limits and constraints are engineering evidence in
+[external references](external-references.md), not user decisions.
+
+<a id="src-030"></a>
+## SRC-030 — select Supabase
+
+Speaker: user in the current chat, 2026-11-04 (Europe/Madrid); message ID not supplied.
+Context: response to the backend comparison requested in SRC-029.
+
+> supabase
+
+Interpretation: select Supabase as the MVP backend. This supersedes the backend
+vendor deferral in DEC-055. It does not select a frontend, map or SMTP provider,
+authorize implementation, provisioning or paid services, or relax the previously
+confirmed deletion/retention rules. Evaluating Supabase Cloud Free is derived from
+the free-cloud research context; feasibility remains to be established.
+
+<a id="src-031"></a>
+## SRC-031 — repository inspection for the Supabase documentation update
+
+Source: GitHub connector and local Git inspection, 2026-11-04.
+This is a new observation, not a product decision or a correction to the earlier
+empty-repository observations in SRC-008/SRC-028.
+
+- Remote branches now include `main` and `docs/reading-guide-2026-11-04`.
+- Fetched `oring/main` and local `main` both point to
+  `be4521d` (merge of the reading-guide PR); the worktree was clean.
+- Created local branch `codex/select-supabase-mvp` from `oring/main`.
+- Connector metadata still reports read access without push permission; the
+  existing local Git authentication is a separate available delivery route.
+- A real PR base now exists. Final delivery outcome is recorded in
+  [delivery status](../delivery.md).
+
+<a id="src-032"></a>
+## SRC-032 — add Dutch and the Netherlands market
+
+Speaker: user in the current chat, 2026-11-04 (Europe/Madrid); message ID not supplied.
+Context: follow-up while recording the Supabase backend choice.
+
+> add dutch and netherlands market to scope
+
+Interpretation: add Dutch to the MVP interface languages alongside English and
+Spanish, and add the Netherlands to the pilot focus alongside Spain and the
+United Kingdom. This is additive: existing languages/markets, global hosting
+allowance and match-local time behavior remain. No launch date, market-specific
+features, paid resources or product implementation are requested.

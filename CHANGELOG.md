@@ -1,5 +1,22 @@
 # Changelog
 
+## 2026-11-04 — Supabase backend and Dutch/Netherlands MVP scope
+
+- Recorded the free-cloud research request and exact Supabase selection as
+  SRC-029/030; added DEC-061 and partially superseded DEC-055 for the backend only.
+- Updated current architecture and summaries; labeled component mapping as Derived
+  recommendations while leaving frontend, map and SMTP providers unselected.
+- Preserved product behavior and the 30-day backup bound. Added Q-019/020 for
+  free-hosting/retention feasibility and public password-reset delivery, with
+  requirement links and TEST-029; product scenarios remain Not run.
+- Updated source coverage, traceability and current delivery status. SRC-031
+  records the now-existing main branch; earlier empty-remote evidence is preserved.
+- Added Dutch alongside English/Spanish and the Netherlands alongside Spain/UK
+  under DEC-062/SRC-032. Updated requirements, journeys, UX, discovery/language
+  defaults, roadmap and acceptance coverage while retaining other countries.
+- Documentation only: no application code, provider resources, deployment or paid
+  service commitment. Work is isolated on `codex/select-supabase-mvp` for PR review.
+
 ## 2026-11-04 — documentation reading guide
 
 - Added `docs/reading-guide.md` at the owner's request, with a first-reading order,

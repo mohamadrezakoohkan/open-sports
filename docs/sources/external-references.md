@@ -11,7 +11,7 @@ Checked 2026-11-04. Recheck before launch because provider terms can change.
 
 | Provider | Observed primary-source terms | Product implication — derived |
 |---|---|---|
-| Telegram | Its terms require users in EU countries and the United Kingdom to be at least 18 to sign up. [Telegram terms](https://telegram.org/tos) | The app's all-ages policy cannot imply Telegram access for every participant in the Spain/UK pilot |
+| Telegram | Its terms require users in EU countries and the United Kingdom to be at least 18 to sign up. [Telegram terms](https://telegram.org/tos) | The app's all-ages policy cannot imply Telegram access for every participant in the Spain/UK/Netherlands pilot |
 | WhatsApp, EEA | The terms set a baseline of 13 for independent use, subject to a higher local requirement, and describe parent-managed accounts below that age where available. [EEA terms](https://www.whatsapp.com/legal/terms-of-service-eea?lang=en) | Do not promise independent access at every age or assume parent-managed accounts are available everywhere |
 | WhatsApp, UK | The UK terms also state a baseline of 13, subject to a higher local requirement, and describe parent-managed accounts where available. [UK terms](https://www.whatsapp.com/legal/terms-of-service-uk) | Keep provider eligibility separate from the PWA's participation scope |
 
@@ -39,9 +39,10 @@ background for draft engineering choices, rather than evidence of user adoption:
 
 ## Technical and licensing options checked 2026-11-04
 
-These sources informed options presented to the owner. The owner chose a
-technology-neutral architecture and AGPL-3.0-only, separately recorded in DEC-055/056.
-No product dependencies are installed.
+These sources initially informed options presented to the owner. The owner first
+chose technology neutrality and AGPL-3.0-only in DEC-055/056, then selected Supabase
+as the backend in [DEC-061](../decisions/decision-log.md#dec-061). Frontend and other
+provider choices remain deferred. No product dependencies are installed.
 
 - [Next.js PWA guide](https://nextjs.org/docs/app/guides/progressive-web-apps):
   framework support for building a PWA. Push examples do not override the chosen
@@ -60,3 +61,54 @@ No product dependencies are installed.
   retrieved unchanged as the repository LICENSE after the explicit AGPL-3.0-only
   decision. A browser fetch of the HTML version timed out; the canonical text
   download succeeded.
+
+<a id="supabase-free-hosting"></a>
+## Supabase hosted Free constraints
+
+Checked 2026-11-04 against the linked official sources. These are provider facts,
+not user decisions or a guarantee that the documented MVP fits the Free plan.
+Recheck before provisioning or launch.
+
+| Subject | Observed provider position | Product implication — Derived recommendation |
+|---|---|---|
+| Free allowances | $0/month, 500 MB database, 50,000 monthly active Auth users, 5 GB egress, 5 GB cached egress and 1 GB file storage; limit of two active Free projects. [Pricing](https://supabase.com/pricing) | Measure realistic pilot consumption; unlimited API requests do not mean unlimited storage, bandwidth or compute |
+| Inactivity pause | Low database activity over seven days can trigger pausing; a paused project can be restored, including data/configuration, for up to one year. [Project pausing](https://supabase.com/docs/guides/platform/free-project-pausing) | Do not assume continuous jobs or expiry of retained data within 30 days; resolve Q-019 before deployment |
+| Backup/recovery | Daily managed backups are documented for paid plans; Supabase recommends regular exports/off-site backups for Free projects. [Database backups](https://supabase.com/docs/guides/platform/backups) | Define and verify bounded recovery copies and deletion-aware restoration; Free is not proof of the DEC-054 backup bound |
+| Password-reset email | Default SMTP sends only to project-team addresses, currently at two messages/hour, and is not intended for production. Custom SMTP permits delivery to the product's users. [Custom SMTP](https://supabase.com/docs/guides/auth/auth-smtp) | Configure a sender and provider for public reset emails under Q-020; vendor, domain and cost remain unresolved |
+
+**Open conflict:** paused recoverable data can outlive the confirmed 30-day bound.
+The public documentation above does not establish a Free configuration satisfying
+all deletion/retention requirements. Keep [Q-019](../planning/open-questions.md#q-019)
+open until a supported operating configuration is evidenced, or the owner explicitly
+changes the requirement in a new decision. No paid upgrade is adopted here.
+
+<a id="supabase-technical"></a>
+## Supabase technical references
+
+Checked 2026-11-04. These support the **Derived recommendations** in the
+[architecture](../architecture/technical-overview.md), not an assertion that the
+owner explicitly chose each mechanism.
+
+- [Supabase source repository](https://github.com/supabase/supabase): open-source
+  Postgres platform; managed cloud limits/terms are separate from code availability.
+  Preserve applicable dependency notices when implementation chooses versions.
+- [Password authentication](https://supabase.com/docs/guides/auth/passwords) and
+  [Auth configuration](https://supabase.com/docs/guides/auth/general-configuration):
+  email/password recovery and configurable email confirmation. Disabling Confirm
+  Email avoids a sign-in verification gate; its internal confirmation state does
+  not prove address ownership.
+- [PostGIS](https://supabase.com/docs/guides/database/extensions/postgis): indexed
+  geographic types and queries for location filtering/distance; not a map-tile or
+  geocoding service.
+- [Database functions](https://supabase.com/docs/guides/database/functions),
+  [PostgREST transactions](https://docs.postgrest.org/en/stable/references/transactions.html)
+  and [PostgreSQL locking](https://www.postgresql.org/docs/current/explicit-locking.html):
+  basis for server-side atomic transitions. Each API request has its own transaction;
+  locking and constraints must still be designed for competing mutations.
+- [Row Level Security](https://supabase.com/docs/guides/database/postgres/row-level-security)
+  and [column privileges](https://supabase.com/docs/guides/database/postgres/column-level-security):
+  row filtering does not hide private columns; grants, views and privileged functions
+  require explicit review. Default view behavior can bypass underlying RLS.
+- [Supabase Cron](https://supabase.com/docs/guides/cron): `pg_cron` schedules SQL or
+  database functions and records runs. Job capability does not establish successful
+  cleanup, operation during pausing or compliant provider backup expiry.

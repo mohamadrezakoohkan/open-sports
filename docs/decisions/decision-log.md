@@ -9,7 +9,9 @@ correction in DEC-020: owner-selected public contacts on profiles and match page
 visible to anonymous visitors without joining. The old named-recipient grant model
 is historical, not the implementation contract.
 
-The owner completed the decision rounds in DEC-060. Early scope/open-detail notes
+The owner completed the initial decision rounds in DEC-060 and subsequently
+selected Supabase in [DEC-061](#dec-061) and expanded language/market coverage in
+[DEC-062](#dec-062). Early scope/open-detail notes
 record what was known at the time; current resolutions are in the linked
 [requirements](../product/requirements.md), [resolved questions](../planning/open-questions.md)
 and [selected defaults](derived-defaults.md). Do not implement a historical superseded rule.
@@ -99,6 +101,7 @@ and [selected defaults](derived-defaults.md). Do not implement a historical supe
 <a id="dec-005"></a>
 ### DEC-005 — any sport, with a Spain and United Kingdom pilot
 
+- **Extended by:** [DEC-062](#dec-062) adds the Netherlands to the pilot focus.
 - **Status:** Confirmed during the current decision round, 2026-11-04.
 - **Source:** [SRC-009](../sources/conversation-evidence.md#src-009).
 - **Decision:** MVP covers any sport and all cities in Spain and the United Kingdom
@@ -681,6 +684,7 @@ and [selected defaults](derived-defaults.md). Do not implement a historical supe
 <a id="dec-041"></a>
 ### DEC-041 — English/Spanish and match-local time
 
+- **Extended by:** [DEC-062](#dec-062) adds Dutch. The match-local time rule remains unchanged.
 - **Status:** Confirmed, 2026-11-04.
 - **Source:** [SRC-021](../sources/conversation-evidence.md#src-021).
 - **Decision:** English and Spanish UI; display each match's local time with its
@@ -769,6 +773,8 @@ and [selected defaults](derived-defaults.md). Do not implement a historical supe
 <a id="dec-049"></a>
 ### DEC-049 — global locations allowed beyond the pilot focus
 
+- **Extended by:** [DEC-062](#dec-062) adds the Netherlands to the pilot focus;
+  the allowance for other countries remains in force.
 - **Status:** Confirmed, 2026-11-04.
 - **Source:** [SRC-024](../sources/conversation-evidence.md#src-024).
 - **Decision:** Spain and the UK are the focus, but hosts may create matches in other countries.
@@ -830,6 +836,8 @@ and [selected defaults](derived-defaults.md). Do not implement a historical supe
 ### DEC-055 — technology-neutral architecture for now
 
 - **Status:** Confirmed intentional deferral, 2026-11-04.
+- **Superseded in part by:** [DEC-061](#dec-061) selects the backend. Frontend,
+  maps, SMTP provider and unresolved deployment choices remain deferred.
 - **Source:** [SRC-026](../sources/conversation-evidence.md#src-026).
 - **Decision:** Keep architecture technology-neutral for now.
 - **Consequences — derived:** Describe logical components, authorization, transactions,
@@ -903,6 +911,50 @@ and [selected defaults](derived-defaults.md). Do not implement a historical supe
 - **Rationale:** User selected completion with documented defaults over more questions.
 - **Links:** [derived defaults](derived-defaults.md), [requirements](../product/requirements.md).
 
+<a id="dec-061"></a>
+### DEC-061 — Supabase backend for the MVP
+
+- **Status:** Confirmed, 2026-11-04.
+- **Source:** [SRC-030](../sources/conversation-evidence.md#src-030), following the
+  free-cloud research request in [SRC-029](../sources/conversation-evidence.md#src-029).
+- **Decision:** Select Supabase as the MVP backend, superseding the backend-vendor
+  deferral in [DEC-055](#dec-055). Preserve the logical boundaries and product rules.
+- **Scope:** Backend technology selection. Frontend framework/hosting, map/geocoding,
+  SMTP provider, project region and exact deployment configuration are not selected.
+  This records a documentation decision, not implementation or provisioning.
+- **Rationale:** Explicit user selection after comparison; no further rationale supplied.
+- **Consequences — derived:** Evaluate Supabase Cloud Free as the initial hosting
+  target in the context of SRC-029. Map persistence/authentication to Supabase
+  Postgres/Auth; the proposed PostGIS, database functions, authorization and jobs
+  are Derived recommendations in the [architecture](../architecture/technical-overview.md).
+  No paid upgrade or uninterrupted free service is promised.
+- **Open constraints:** [Q-019](../planning/open-questions.md#q-019) covers free-tier
+  availability and the unresolved conflict between paused-project retention and
+  DEC-054's 30-day backup bound. [Q-020](../planning/open-questions.md#q-020) covers
+  public password-reset delivery. Selection does not waive either launch gate.
+- **Links:** [REQ-001](../product/requirements.md#req-001),
+  [REQ-005](../product/requirements.md#req-005), [REQ-018](../product/requirements.md#req-018).
+
+<a id="dec-062"></a>
+### DEC-062 — Dutch language and Netherlands pilot market
+
+- **Status:** Confirmed, 2026-11-04.
+- **Source:** [SRC-032](../sources/conversation-evidence.md#src-032).
+- **Decision:** Add Dutch alongside English and Spanish in the MVP interface.
+  Add the Netherlands alongside Spain and the United Kingdom in the pilot focus.
+- **Scope:** Additive language and market coverage, extending DEC-005/041/049.
+  The existing all-cities pilot scope applies to the Netherlands too; matches in
+  other countries remain allowed. Match-local time and explicit time zones remain.
+- **Rationale:** Explicit user request; no additional rationale supplied.
+- **Consequences — derived:** Extend interface labels, validation and in-app service
+  notices to Dutch. Apply the existing browser-language/manual-switch default to
+  Dutch while preserving English fallback. Update geographic and localization
+  acceptance scenarios; no automatic translation of user-authored content is adopted.
+- **Boundary:** No new market-specific feature, schedule, map provider, deployment
+  region, spending commitment or application implementation follows from this choice.
+- **Links:** [REQ-019](../product/requirements.md#req-019),
+  [REQ-032](../product/requirements.md#req-032).
+
 ## Proposal register
 
 These proposals originated during reconstruction, not unavailable assistant replies.
@@ -936,9 +988,10 @@ do not implement its grants or invalidation rules.
 <a id="prop-004"></a>
 ### PROP-004 — server-authoritative modular application
 
-**Status:** Selected derived architecture under DEC-060, deliberately technology-neutral
-under DEC-055. Logical modules, authoritative transactions, public/private projections,
-durable jobs and external handoff are specified without vendor selection.
+**Status:** Selected derived architecture under DEC-060. It was deliberately
+technology-neutral under DEC-055; DEC-061 subsequently selects Supabase for the
+backend. Logical modules, authoritative transactions, public/private projections,
+durable jobs and external handoff remain applicable.
 See [architecture](../architecture/technical-overview.md).
 
 <a id="prop-005"></a>
@@ -1036,3 +1089,11 @@ privacy and deletion/retention were resolved in DEC-037–054. The owner then ch
 technology neutrality, AGPL-3.0-only, an online-only installable PWA, host/role rules,
 a browser/accessibility baseline, and delegated small defaults (DEC-055–060).
 No further product answers are required to complete this documentation baseline.
+
+Following free-cloud backend research, the owner selected Supabase in DEC-061.
+This partially supersedes DEC-055 without adopting the assistant's alternative
+stack or changing product behavior. Provider-specific launch questions are Open;
+the earlier technology-neutral baseline remains preserved above.
+
+DEC-062 then adds Dutch and the Netherlands market. English/Spanish and Spain/UK
+remain in scope; the global-location allowance and venue-local time rules continue.

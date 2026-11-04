@@ -1,8 +1,9 @@
 # Domain model
 
 This is a **Derived recommendation selected under DEC-060**. It is a logical model,
-not a vendor schema or implementation. Technology neutrality is deliberate under
-[Q-015](../planning/open-questions.md#q-015).
+not a vendor schema or implementation. Supabase is now selected under
+[DEC-061](../decisions/decision-log.md#dec-061); the entities and invariants here
+remain the contract for the [derived backend mapping](technical-overview.md).
 
 ## Terms and entities
 

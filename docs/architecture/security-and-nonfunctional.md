@@ -32,6 +32,38 @@ roster even if the data remains inside the 30-day retention window.
 [OWASP authorization guidance](https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html)
 is engineering background; the product decisions remain source-linked in this repository.
 
+<a id="supabase-access-controls"></a>
+## Supabase access controls
+
+**Status: Derived recommendation** applying the existing controls to the
+[selected backend](../decisions/decision-log.md#dec-061). No policies have been
+implemented or tested.
+
+- Enable RLS on exposed tables and restrict grants for anonymous and authenticated
+  roles. Owner and host permissions need independent checks; RLS does not enforce
+  capacity, revision or lifecycle invariants by itself.
+- Keep authentication email, unpublished contacts, private notices and removal
+  reasons outside public projections. Row access does not hide columns. Deny raw
+  table access that would bypass a projection, including through nested API queries.
+- Review views and functions as authorization boundaries. Views may bypass
+  underlying RLS by default; use invoker semantics where appropriate. Any privileged
+  projection or mutation must explicitly authorize its caller and fields, constrain
+  function execution grants and fix its search path. Public access to a function
+  cannot imply public access to its underlying private data.
+- Keep secret/service-role credentials server-side; they can bypass ordinary data
+  policies. A browser publishable key is not a substitute for authorization.
+- Configure Supabase Auth for email/password with Confirm Email disabled, preserving
+  DEC-045. Do not present provider-internal confirmation state as verified ownership.
+  Test reset redirects and custom SMTP delivery before public use; no verification
+  gate or match-service emails are introduced.
+- Verify deletion across Auth, sessions and application records. An Auth admin call
+  and a database RPC are separate operations; deletion must fail closed and retry
+  safely without restoring access or retaining personal data as a normal success.
+
+The [official technical sources](../sources/external-references.md#supabase-technical)
+describe these mechanisms. Acceptance must exercise anonymous callers, owners,
+other signed-in users, hosts and removed players against API payloads, not only UI.
+
 ## Integrity and reliability
 
 | Failure mode | Selected control | Acceptance evidence |
@@ -66,9 +98,17 @@ analytics SDK is part of MVP.
 
 Exercise purge, deletion, restoration, retry and worker-delay behavior before
 deployment. Reject implementations that cannot meet immediate deletion or the
-30-day backup bound. Choose infrastructure sizing, concrete performance/load/
-recovery targets and budgets in the later technology selection task, then measure
-them on realistic devices and connections.
+30-day backup bound. Supabase is selected, but its hosted Free pausing/recovery
+behavior remains an unresolved deployment conflict in
+[Q-019](../planning/open-questions.md#q-019). Scheduled cleanup cannot prove provider
+snapshot expiry or run while its database is paused. A paid plan's advertised backup
+window alone also does not verify deletion across every retained copy.
+
+Resolve hosting retention and [SMTP setup](../planning/open-questions.md#q-020),
+then size the pilot and measure concrete performance/load/recovery targets on
+realistic devices and connections. Track free-plan consumption using the
+[dated provider limits](../sources/external-references.md#supabase-free-hosting);
+reaching a quota does not authorize an automatic paid upgrade.
 
 No product implementation exists here. See [validation report](../validation/validation-report.md)
 for documentation checks and [scenarios](../validation/acceptance-tests.md) for

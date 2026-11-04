@@ -2,10 +2,13 @@
 
 ## Product identity — Confirmed
 
-An open-source sports matchmaking PWA for any sport, piloting across cities in Spain
-and the United Kingdom. Hosts can organize with or without playing. Eligible,
-signed-in players instantly join public matches. Playing places can be general or
-host-named roles; skill is self-declared separately for each sport.
+An open-source sports matchmaking PWA for any sport, piloting across all cities in
+Spain, the United Kingdom and the Netherlands. Matches in other countries remain
+allowed. The interface supports English, Spanish and Dutch; the Netherlands and
+Dutch scope extension is [DEC-062](../decisions/decision-log.md#dec-062). Hosts can
+organize with or without playing. Eligible, signed-in players instantly join public
+matches. Playing places can be general or host-named roles; skill is self-declared
+separately for each sport.
 
 Participant chat is external. Owners may publish phone, email, WhatsApp and Telegram
 methods on profiles and match pages for anyone to view, including anonymous visitors.

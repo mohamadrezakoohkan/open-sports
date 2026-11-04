@@ -3,6 +3,9 @@
 These journeys apply confirmed rules and the selected derived defaults under DEC-060.
 They are designed flows, not recovered historical wireframes or implemented UI.
 Requirements remain canonical; see [MVP](mvp.md) and [acceptance scenarios](../validation/acceptance-tests.md).
+The Supabase selection changes the [backend architecture](../architecture/technical-overview.md),
+not these user flows. Public reset delivery and deletion/retention must pass the
+[provider release scenario](../validation/acceptance-tests.md#test-029).
 
 <a id="j-001"></a>
 ## J-001 — discover and inspect a match
@@ -19,6 +22,10 @@ Requirements remain canonical; see [MVP](mvp.md) and [acceptance scenarios](../v
 Empty, full, cancelled and admission-closed presentations must be distinguishable
 under the selected UX defaults. Do not use public contact visibility as a reason to expose
 private sign-in information.
+
+Discovery covers the Spain/UK/Netherlands pilot and allows other countries under
+[REQ-019](requirements.md#req-019). The visitor can use English, Spanish or Dutch
+under [REQ-032](requirements.md#req-032); match times remain venue-local in each language.
 
 <a id="j-002"></a>
 ## J-002 — instant join

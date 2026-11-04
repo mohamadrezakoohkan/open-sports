@@ -42,9 +42,11 @@ navigation advice, not additional product requirements.
 | Review or test behavior | [Traceability](validation/traceability.md) → relevant [requirements](product/requirements.md) and [scenarios](validation/acceptance-tests.md) → [validation report](validation/validation-report.md) | Is every requirement covered, and which checks have actually run? |
 | Understand or change a decision | [Decision log](decisions/decision-log.md) → linked [source excerpt](sources/conversation-evidence.md) → [question status](planning/open-questions.md) → [contribution process](../CONTRIBUTING.md) | What is the evidence, what was superseded, and which documents depend on the rule? |
 
-Architecture is deliberately technology-neutral. A vendor mentioned in
-[external references](sources/external-references.md) is background, not a selected
-stack. The [roadmap](planning/roadmap.md) is not a promise to ship every listed idea.
+Supabase is selected for the backend in [DEC-061](decisions/decision-log.md#dec-061),
+partially superseding the earlier technology-neutral decision. Other vendors in
+[external references](sources/external-references.md) remain background unless
+explicitly adopted; the Supabase component mapping is a Derived recommendation.
+The [roadmap](planning/roadmap.md) is not a promise to ship every listed idea.
 
 ## Read status labels before acting on a statement
 
@@ -103,7 +105,7 @@ Use this map when you know the question but not the filename. This guide and the
 |---|---|
 | Product purpose and scope | [Vision and principles](product/vision-and-principles.md): purpose, user hypotheses, trade-offs. [MVP](product/mvp.md): release boundary, exclusions, and implementation gates. |
 | Product behavior | [Requirements](product/requirements.md): precise rules and acceptance criteria. [Journeys](product/journeys.md): actor flows and edge cases. [Communication/privacy](product/communication-and-privacy.md): publication, audiences, lifecycle, and external communication. [UX](product/ux.md): interactions, states, language, and accessibility guidance. |
-| Architecture | [Domain model](architecture/domain-model.md): glossary, entities, states, relationships, and invariants. [Technical overview](architecture/technical-overview.md): logical components, transactions, trust boundaries, and deferred technology choices. [Security and non-functional requirements](architecture/security-and-nonfunctional.md): authorization, reliability, operations, browser support, and accessibility targets. |
+| Architecture | [Domain model](architecture/domain-model.md): glossary, entities, states, relationships, and invariants. [Technical overview](architecture/technical-overview.md): selected Supabase backend, derived component mapping, transactions, trust boundaries, and remaining choices. [Security and non-functional requirements](architecture/security-and-nonfunctional.md): authorization, reliability, operations, browser support, and accessibility targets. |
 | Decisions | [Decision log](decisions/decision-log.md): choices, evidence, alternatives, and supersession history. [Derived defaults](decisions/derived-defaults.md): selected small details. [Decision template](decisions/template.md): format for a new decision. [Historical contact grants](decisions/history/contact-grants-before-correction.md): superseded design, retained as context only. |
 | Sources | [Conversation evidence](sources/conversation-evidence.md): accessible excerpts and inspection observations. [Recovery status](sources/recovery-status.md): missing history and retrieval limits. [External references](sources/external-references.md): engineering and licensing background, separate from user decisions. |
 | Planning | [Question register](planning/open-questions.md): resolutions, intentional deferrals, and unknowable context. [Roadmap](planning/roadmap.md): suggested sequence, research hypotheses, success measures, and uncommitted future ideas. |

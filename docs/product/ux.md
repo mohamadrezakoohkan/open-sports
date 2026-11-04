@@ -59,7 +59,9 @@ Terminal pages show only ended/cancelled state, with no details or roster.
   WCAG 2.2 AA is the confirmed target, not a verified result. Validate the latest
   two stable Chrome/Safari/Firefox/Edge versions on mobile/desktop.
 - Avoid relying on color or icons alone for availability and privacy.
-- Use English and Spanish. Display match-local time with its time zone.
+- Support English, Spanish and Dutch under
+  [DEC-062](../decisions/decision-log.md#dec-062). Display match-local time with its
+  time zone; language choice does not change the venue's time zone.
 - Hosts choose a map pin plus venue/address/city; exact location is public.
 - Public profiles/rosters show display names, skill and relevant roles; profiles
   show upcoming matches only. No avatars or public past-match lists.

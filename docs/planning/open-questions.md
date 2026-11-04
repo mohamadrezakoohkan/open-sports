@@ -1,14 +1,15 @@
 # Resolved questions and deliberate deferrals
 
-The owner completed the decision rounds and delegated remaining small defaults in
-[DEC-060](../decisions/decision-log.md#dec-060). There is **no outstanding product
-question requiring another answer to finish this package**. Selected defaults stay
-labeled Derived recommendations. Future proposals are not commitments.
+The owner completed the initial product decision rounds and delegated remaining
+small defaults in [DEC-060](../decisions/decision-log.md#dec-060), then selected
+Supabase in [DEC-061](../decisions/decision-log.md#dec-061). The product baseline is
+specified; provider-specific launch questions below remain **Open**. Selected
+defaults stay labeled Derived recommendations. Future proposals are not commitments.
 
 <a id="q-001"></a>
 ## Q-001 — sport and geography
-Resolved: any sport, searchable/custom entries, Spain/UK pilot focus with other
-countries allowed (DEC-005/035/049).
+Resolved: any sport, searchable/custom entries, Spain/UK/Netherlands pilot focus
+with other countries allowed (DEC-005/035/049/062).
 
 <a id="q-002"></a>
 ## Q-002 — age-related scope
@@ -89,8 +90,10 @@ separate contribution agreement or governance body is introduced.
 <a id="q-015"></a>
 ## Q-015 — architecture and PWA
 Resolved product behavior: installable, offline screen, online-only match data and
-actions (DEC-057). **Explicitly deferred:** technology/vendor selection under DEC-055.
-Logical components, transactions, authorization and retention remain specified.
+actions (DEC-057). Supabase is the selected backend under DEC-061, partially
+superseding DEC-055. Frontend framework/hosting, maps/geocoding and other deployment
+choices remain deferred. Logical components, transactions, authorization and
+retention remain specified; see [architecture](../architecture/technical-overview.md).
 
 <a id="q-016"></a>
 ## Q-016 — quality and operation
@@ -103,8 +106,8 @@ measured performance belong to implementation planning; no deployment is authori
 <a id="q-017"></a>
 ## Q-017 — locations and languages
 Resolved: custom sports/roles, map pin plus venue/address/city, public precision,
-optional device origin/manual fallback, English/Spanish and match-local time with
-zone, global location allowance (DEC-035/040/041/046/049).
+optional device origin/manual fallback, English/Spanish/Dutch and match-local time
+with zone, global location allowance (DEC-035/040/041/046/049/062).
 
 <a id="q-018"></a>
 ## Q-018 — release boundary and business model
@@ -112,14 +115,54 @@ Resolved: free public-only MVP and explicit deferrals (DEC-042). No monetization
 future feature commitment or numerical growth target is invented. Future pilot
 hypotheses remain proposals in the roadmap.
 
+<a id="q-019"></a>
+## Q-019 — Supabase Free availability and retention feasibility
+
+**Status: Open; launch gate.** **Owner:** technical maintainer; product owner must
+resolve any proposed change to the confirmed retention policy or spending scope.
+
+Supabase is selected in DEC-061. Cloud Free is the derived initial target from
+SRC-029, not proof that the full MVP can operate indefinitely at no cost.
+The [checked provider constraints](../sources/external-references.md#supabase-free-hosting)
+include inactivity pauses and paused-project recovery lasting beyond 30 days.
+That conflicts with the backup bound in [DEC-054](../decisions/decision-log.md#dec-054)
+unless a supported operational solution is established. Pausing also makes
+timely service and scheduled purge unavailable; ordinary database cleanup alone
+does not remove provider snapshots. Paying for a plan is not assumed to solve
+every retention requirement and has not been authorized.
+
+Before launch, establish evidence for the deployed plan's backup/snapshot/log
+expiry, deletion and restore handling, job availability, quotas and measured
+pilot workload. Link results to [REQ-018](../product/requirements.md#req-018),
+[REQ-035](../product/requirements.md#req-035), [TEST-019](../validation/acceptance-tests.md#test-019),
+[TEST-026](../validation/acceptance-tests.md#test-026) and
+[TEST-029](../validation/acceptance-tests.md#test-029). No retention exception is adopted.
+
+<a id="q-020"></a>
+## Q-020 — public password-reset email delivery
+
+**Status: Open; launch gate.** **Owner:** technical maintainer for provider/configuration
+and delivery evidence; product owner for any paid commitment.
+
+Choose a custom SMTP provider and sender domain/configuration suitable for
+Supabase Auth. Resend was researched but is not selected. The default Supabase
+mailer is restricted to project-team addresses and is unsuitable for public
+password reset; see [provider references](../sources/external-references.md#supabase-free-hosting).
+Verify reset delivery to a non-team account, redirect allowlisting, expiry and
+single-use behavior under [REQ-005](../product/requirements.md#req-005) and
+[TEST-029](../validation/acceptance-tests.md#test-029). Preserve the confirmed absence
+of an email-verification gate and the exclusion of match-service emails.
+
 ## Items that remain unknowable or implementation-dependent
 
 - Earlier conversation and four assistant reply bodies were unavailable; current
   answers do not recover them. See [source coverage](../sources/recovery-status.md).
-- The remote had no PR base. Delivery reports the final inspection and fallback.
-- Stack/providers, operational resources and deployment are intentionally outside
-  this technology-neutral documentation task.
+- The original delivery had no PR base; a later inspection found `main`.
+  [Delivery status](../delivery.md) distinguishes these observations.
+- Supabase backend selection is complete; remaining providers, resources and
+  deployment are outside this documentation update. Q-019/020 are launch gates.
 - Acceptance scenarios cannot pass against an application that has not been built.
 
-These limits are not hidden unresolved product choices or reasons to ask another
-round. See [selected defaults](../decisions/derived-defaults.md) for their derivations.
+These limits do not prevent recording the backend choice. Resolve launch gates
+before deployment; see [selected defaults](../decisions/derived-defaults.md) for
+the existing product mechanisms they must preserve.

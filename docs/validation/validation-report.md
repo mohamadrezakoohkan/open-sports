@@ -2,10 +2,32 @@
 
 ## Documentation result
 
-**PASS — final documentation review, 2026-11-04.** The package contains 31 Markdown
-files, 60 decision records, 36 requirements, 28 acceptance scenarios and selected
-derived defaults. No outstanding product answer is needed to complete this baseline;
-stack/providers and deployment resources are intentionally deferred.
+The Supabase and Dutch/Netherlands follow-up contains 31 Markdown files, 62 decision records,
+36 requirements, 29 acceptance scenarios and selected derived defaults.
+Supabase is selected; Dutch and the Netherlands extend language/pilot coverage.
+Remaining providers and operational launch gates are Open.
+The checks for this follow-up are recorded separately below.
+
+### Supabase and Dutch/Netherlands follow-up — 2026-11-04
+
+Executable checks: `python3 scripts/check_docs.py` and `git diff --check` pass.
+The checker covers required files, local links/anchors, stable IDs, acceptance
+sections and traceability. It does not execute the product scenarios.
+
+Manual checks: compared the new decisions with exact SRC-030/SRC-032 excerpts;
+preserved earlier neutrality, language and market decisions with successor links;
+reviewed present-tense summaries, Supabase capability references and derived labels;
+checked that Dutch/Netherlands coverage propagates through requirements, journeys,
+UX, defaults, roadmap and scenarios without dropping English/Spanish, Spain/UK or
+the allowance for other countries. The unchanged retention and no-verification
+rules remain explicit; Q-019/020 identify missing operational evidence.
+
+No application, translation catalog or provider configuration was created. No
+product, translation-quality, live-email, concurrency, purge or restoration test
+has run; TEST-029 and the expanded TEST-020/022 remain Not run. Mermaid diagrams
+received textual review only, not rendering. Publication outcome is in the task handoff.
+
+### Original baseline checks — historical PASS, 2026-11-04
 
 Executable checks run:
 
@@ -20,7 +42,7 @@ file does not invent a pass for a differently packaged copy. Initial failures
 were missing traceability rows/scenario coverage while decisions were being added;
 they were corrected and the checker passed again.
 
-## Manual evidence and semantic review — PASS for available evidence
+## Original manual evidence and semantic review — historical PASS for available evidence
 
 - Compared current decisions to recorded user answers, preserving exact answers,
   correction history and unavailable-source boundaries.
@@ -63,8 +85,11 @@ external-link audit. They are background, not substitutes for user decisions.
 
 Archive extraction/file equivalence and Git bundle cloning/checking are performed
 as delivery verification and recorded in the accompanying delivery report.
-The final remote inspection remained empty with no PR base. No default-branch
-initialization, remote push or PR creation occurred.
+The original final remote inspection remained empty with no PR base; no
+default-branch initialization, remote push or PR creation occurred for that delivery.
+The [Supabase follow-up inspection](../sources/conversation-evidence.md#src-031)
+now finds `main`; current work uses `codex/select-supabase-mvp` for a PR.
+See [delivery status](../delivery.md) and the task handoff for publication outcome.
 
 ## Historical completeness
 

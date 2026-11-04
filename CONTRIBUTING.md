@@ -74,7 +74,7 @@ requirements; the current baseline is not a reason to discard them.
   result, and denial/failure behavior. Avoid exact limits without a sourced
   decision; proposed limits need their own label.
 - Use the [decision template](docs/decisions/template.md) for a new decision.
-- Use English in this package; product UI supports English and Spanish.
+- Use English in this package; product UI supports English, Spanish and Dutch.
 - Version dates use ISO format; product event times use match-local time with an explicit zone.
 
 ## Review checklist

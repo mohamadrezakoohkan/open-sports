@@ -18,15 +18,18 @@ a product implementation.
 <a id="req-001"></a>
 ## REQ-001 — sports matchmaking PWA
 
-**Status:** Confirmed product identity; [DEC-001](../decisions/decision-log.md#dec-001).
+**Status:** Confirmed product identity under [DEC-001](../decisions/decision-log.md#dec-001)
+and Supabase backend selection under [DEC-061](../decisions/decision-log.md#dec-061).
 
-Provide a browser-accessible, installable PWA for sports matchmaking. Code and documentation are AGPL-3.0-only under DEC-056. Match data/actions require connectivity under DEC-057. Support the latest two stable Chrome/Safari/Firefox/Edge versions on responsive mobile/desktop under DEC-059; architecture stays technology-neutral by DEC-055.
+Provide a browser-accessible, installable PWA for sports matchmaking. Code and documentation are AGPL-3.0-only under DEC-056. Match data/actions require connectivity under DEC-057. Support the latest two stable Chrome/Safari/Firefox/Edge versions on responsive mobile/desktop under DEC-059. Supabase is the selected backend under DEC-061; other stack choices remain deferred as described in the [architecture](../architecture/technical-overview.md).
 
 **Acceptance criteria:**
 
 - The product's purpose is sports matchmaking and its delivery platform is the web/PWA.
 - The repository includes AGPL-3.0-only licensing and identifies source publication.
 - Installation is supported; release checks cover the adopted browser matrix without assuming every browser offers identical installation UI.
+- The implemented backend uses Supabase while preserving the requirements below;
+  record provider configuration and release evidence under [TEST-029](../validation/acceptance-tests.md#test-029).
 
 <a id="req-002"></a>
 ## REQ-002 — instant public joining
@@ -81,6 +84,8 @@ Use email/password accounts for hosting, joining and editing profiles. No email-
 - Guests can browse but must sign in for hosting, joining or profile edits.
 - No avatar input/upload or public past-match history exists.
 - Password reset uses authentication email; service-notification email remains excluded.
+- Verify reset delivery to an ordinary user outside the Supabase project team;
+  resolve [Q-020](../planning/open-questions.md#q-020) before public launch.
 - No email-verification gate prevents ordinary account use.
 - Private authentication/recovery fields do not appear publicly unless independently selected as contacts.
 - Derived recommendation: reset tokens are single-use, expire and do not expose account existence.
@@ -280,19 +285,25 @@ Delete account personal data immediately, withdraw all unfinished participation,
 - Selected default: restoration must not resurrect later deletion or public-visibility choices.
 - Selected default: diagnose failed state changes without raw contacts in routine logs.
 - No measured availability/performance is claimed; restore must not make deleted personal data live again.
+- Verify the deployed provider's backups, paused-project snapshots and restoration
+  against the same retention bounds; [Q-019](../planning/open-questions.md#q-019)
+  remains Open until evidence supports them. Backend selection is not a waiver.
 
 <a id="req-019"></a>
-## REQ-019 — any sport and global locations with Spain/UK pilot focus
+## REQ-019 — any sport and global locations with Spain/UK/Netherlands pilot focus
 
-**Status:** Confirmed: [DEC-005](../decisions/decision-log.md#dec-005), [DEC-035](../decisions/decision-log.md#dec-035) and [DEC-049](../decisions/decision-log.md#dec-049).
+**Status:** Confirmed: [DEC-005](../decisions/decision-log.md#dec-005), [DEC-035](../decisions/decision-log.md#dec-035), [DEC-049](../decisions/decision-log.md#dec-049) and the expansion in [DEC-062](../decisions/decision-log.md#dec-062).
 
-Support a searchable sport list plus custom sports. Spain and UK cities are the pilot focus; other countries are allowed.
+Support a searchable sport list plus custom sports. Cities across Spain, the United
+Kingdom and the Netherlands are the pilot focus; other countries are allowed.
 
 **Acceptance criteria:**
 
 - No single-sport restriction or handpicked city shortlist is imposed.
 - Hosts can choose a listed sport or enter a custom one.
-- Hosting outside Spain/UK is not rejected by a geographic allowlist.
+- Hosting/discovery supports cities across Spain, the UK and the Netherlands;
+  no selected-city shortlist narrows the pilot scope.
+- Hosting outside those three countries is not rejected by a geographic allowlist.
 - Time-zone/location modeling supports the chosen venue rather than assuming one pilot-country offset.
 
 <a id="req-020"></a>
@@ -474,13 +485,17 @@ Show match changes, cancellations, removals and reconfirmation requests in an in
 <a id="req-032"></a>
 ## REQ-032 — languages and local match time
 
-**Status:** Confirmed; [DEC-041](../decisions/decision-log.md#dec-041).
+**Status:** Confirmed; [DEC-041](../decisions/decision-log.md#dec-041), extended by
+[DEC-062](../decisions/decision-log.md#dec-062).
 
-Support English and Spanish. Show each match in its venue-local time with its time zone.
+Support English, Spanish and Dutch. Show each match in its venue-local time with its time zone.
 
 **Acceptance criteria:**
 
-- Core interface labels, validation messages and service notices have English and Spanish variants.
+- Core interface labels, validation messages and service notices have English,
+  Spanish and Dutch variants.
+- Apply the [language-selection default](../decisions/derived-defaults.md#discovery-and-localization)
+  to all three supported languages, retaining a manual switch and English fallback.
 - Match time and admission deadline are presented in the match location's time zone, explicitly identified.
 - The primary time display does not silently change to the viewer's time zone.
 - Derived recommendation: store an unambiguous instant and location time-zone identifier; handle seasonal clock changes and distinct zones within a country.

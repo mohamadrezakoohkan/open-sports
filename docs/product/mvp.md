@@ -3,9 +3,10 @@
 ## Current scope
 
 The first release is a free, installable PWA for public sports matches. It covers
-any sport with searchable/custom entries. Spain and UK cities are the pilot focus;
-other countries are permitted. UI is English/Spanish, with venue-local times and
-explicit time zones.
+any sport with searchable/custom entries. All cities in Spain, the UK and the
+Netherlands are the pilot focus; other countries are permitted. UI is English,
+Spanish and Dutch, with venue-local times and explicit time zones. The Netherlands
+and Dutch were added in [DEC-062](../decisions/decision-log.md#dec-062).
 
 The core loop is public discovery → email/password account → host or instantly
 join → manage/leave/reconfirm → coordinate through optional public contact methods
@@ -52,8 +53,10 @@ is reconstructed from accessible sources and the owner's current answers.
 
 ## Implementation and release gates
 
-1. Select stack/providers later without changing the fixed rules; technology neutrality
-   is deliberate, not missing product design.
+1. Use the Supabase backend selected in [DEC-061](../decisions/decision-log.md#dec-061).
+   Resolve remaining providers/configuration and the free-hosting/retention and SMTP
+   launch gates in [Q-019](../planning/open-questions.md#q-019)/[Q-020](../planning/open-questions.md#q-020).
+   The selection does not change the fixed product rules or authorize deployment.
 2. Implement and pass the [acceptance scenarios](../validation/acceptance-tests.md),
    especially concurrency, reconfirmation, public/private projections and deletion.
 3. Validate the browser matrix, installation affordances and WCAG target on real UI.

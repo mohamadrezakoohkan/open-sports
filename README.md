@@ -26,7 +26,7 @@ Current decisions do not recover that missing history. See [source coverage](doc
 
 | Area | Behavior |
 |---|---|
-| Scope | Free public-match PWA; any sport; Spain/UK pilot focus, other countries allowed |
+| Scope | Free public-match PWA; any sport; all cities in Spain, the UK and the Netherlands as pilot focus; other countries allowed |
 | Accounts | Email/password, no email verification; email password reset |
 | Public profile | Display name, per-sport skill, contextual roles, upcoming matches; no avatar or past-match list |
 | Discovery | Map/distance, city, sport, date, skill, available places; soonest-start sort |
@@ -45,10 +45,10 @@ Current decisions do not recover that missing history. See [source coverage](doc
 | Communication | External participant chat; in-app-only service notification list |
 | Support | External GitHub Issues; no in-app reports, moderation or personal blocking |
 | Deletion/retention | Immediate personal-data deletion; withdraw/cancel all unfinished matches; terminal details/notices expire after 30 days; backups within 30 days |
-| Language/time | English/Spanish; match-local time with explicit zone |
+| Language/time | English/Spanish/Dutch; match-local time with explicit zone |
 | PWA/quality | Installable, online-only match data/actions; offline screen; latest two stable Chrome/Safari/Firefox/Edge; responsive; WCAG 2.2 AA target |
 | Age-related scope | No age restrictions, declaration, age fields/filters or age-related messaging |
-| License/architecture | AGPL-3.0-only for code/docs; technology-neutral architecture by explicit choice |
+| License/architecture | AGPL-3.0-only for code/docs; Supabase backend selected in DEC-061; remaining stack/operations choices open |
 
 Private games, waitlists, recurring games, ratings, payments and venue booking are
 deferred. Native chat, avatars, past-match lists and the other exclusions above are
@@ -75,7 +75,7 @@ docs/
   product/       vision, MVP, requirements, journeys, communication/privacy, UX
   decisions/     decision log, selected defaults, template, superseded history
   sources/       exact conversation evidence, recovery limits, external references
-  architecture/  domain model, neutral architecture, quality/security
+  architecture/  domain model, Supabase backend mapping, quality/security
   planning/      resolved questions, deliberate deferrals, roadmap/future ideas
   validation/    scenarios, traceability, documentation and instruction reviews
   delivery.md
@@ -95,10 +95,12 @@ It does not prove historical completeness, external-link health or legal complia
 
 ## Repository delivery
 
-The [destination repository](https://github.com/mohamadrezakoohkan/open-sports) was
-accessible but empty, with no base branch for a PR. Work uses a dedicated local
-branch; the default branch has not been initialized or pushed. See
-[delivery status and integration instructions](docs/delivery.md) for the archive,
-portable Git bundle and final Git inspection.
+The [destination repository](https://github.com/mohamadrezakoohkan/open-sports) now
+has `main`, including the reading guide. The Supabase selection update uses
+`codex/select-supabase-mvp` and targets `main` through a PR. Earlier empty-repository
+observations and archive/bundle delivery remain historical. See
+[delivery status](docs/delivery.md) and the
+[open hosting/retention and email gates](docs/planning/open-questions.md#q-019).
+No application or provider resources have been created.
 
 Licensed [AGPL-3.0-only](LICENSE); [license details](LICENSE-STATUS.md).

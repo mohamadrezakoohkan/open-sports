@@ -181,7 +181,9 @@ product-test, accessibility, security or performance passes.
 
 **Covers:** [REQ-006](../product/requirements.md#req-006), [REQ-019](../product/requirements.md#req-019).
 
-**Setup/action:** Create matches across Spain/UK and another country; deny geolocation; select manual origin and filters/radius.
+**Setup/action:** Create and discover matches in cities across Spain, the UK and
+the Netherlands, plus another country; deny geolocation; select manual origin and
+filters/radius. Exercise both listed and custom sports in the Netherlands.
 
 **Expected:** Global creation allowed. Manual city/pin fallback works; optional device origin only on request. Approximate straight-line kilometers are labeled; all filters combine and sort by soonest start. Exact venue location is public before joining.
 
@@ -195,13 +197,20 @@ product-test, accessibility, security or performance passes.
 **Expected:** No age restriction, declaration, date of birth, verification, displayed age/filter, guardian-specific flow or age-related product message.
 
 <a id="test-022"></a>
-## TEST-022 — English/Spanish and location time zone
+## TEST-022 — English/Spanish/Dutch and location time zone
 
 **Covers:** [REQ-032](../product/requirements.md#req-032).
 
-**Setup/action:** Change interface language; view from another time zone; enter nonexistent/ambiguous clock-change times.
+**Setup/action:** Exercise English, Spanish and Dutch browser preferences and the
+manual language switch; try an unsupported browser language. Inspect core labels,
+validation and service notices in every supported language. View matches in each
+pilot market from another time zone; enter nonexistent/ambiguous clock-change times.
 
-**Expected:** English/Spanish labels/errors/notices; venue-local time/deadline with explicit zone. Do not convert primary display to viewer time. Resolve clock ambiguity/reject nonexistent times; no single offset per country or automatic authored-text translation.
+**Expected:** English/Spanish/Dutch labels/errors/notices, matching browser preference
+where supported, English fallback otherwise, with a working manual switch.
+Venue-local time/deadline with explicit zone in every language. Do not convert primary
+display to viewer time. Resolve clock ambiguity/reject nonexistent times; no single
+offset per country or automatic authored-text translation. These checks are **Not run**.
 
 <a id="test-023"></a>
 ## TEST-023 — Free public-only MVP boundary
@@ -256,3 +265,27 @@ product-test, accessibility, security or performance passes.
 **Setup/action:** Submit missing/invalid fields, duplicate role labels, end before start, closed publication cutoff, oversized text and compound material/rule edits.
 
 **Expected:** Apply selected defaults for required fields/bounds and plain-text handling. Future start/deadline, ordered times and valid pools are required. Material location changes have no cosmetic bypass; incompatible rule edits require explicit removals first.
+
+<a id="test-029"></a>
+## TEST-029 — Supabase configuration and operational release gates
+
+**Covers:** [REQ-001](../product/requirements.md#req-001),
+[REQ-005](../product/requirements.md#req-005), [REQ-018](../product/requirements.md#req-018).
+
+**Setup/action:** Against the eventual Supabase deployment, record the selected
+plan, project region and enabled components; register/sign in without email
+verification; deliver and consume a reset link for a non-team test account using
+configured SMTP. Test expired/reused links and unapproved redirects. Exercise
+job delay/unavailability, pause/recovery where applicable, quota failure and
+restoration using fictional data. Inspect application and provider retention
+evidence, including paused snapshots, independently of ordinary database purge.
+
+**Expected:** The backend is Supabase under DEC-061. No verification gate appears;
+reset succeeds for ordinary users and remains private, expiring and single-use.
+Failed/unavailable operations never claim successful participation. Jobs cannot
+extend authoritative deadlines; resumed service cannot expose stale terminal or
+deleted data. Backups/snapshots and restoration meet the unchanged REQ-018 bound.
+[Q-019](../planning/open-questions.md#q-019) and
+[Q-020](../planning/open-questions.md#q-020) close only with supporting configuration,
+provider and test evidence. If a hosting limit prevents required behavior, launch
+remains blocked rather than weakening the requirement. These checks are **Not run**.

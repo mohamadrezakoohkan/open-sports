@@ -78,8 +78,11 @@ No names, contacts, location, schedule, roster, reason or narrative survive in i
 - Request geolocation only through “Use my location.” Denial/failure preserves
   manual input. Keep origin in the browsing session, not a public profile or
   permanent location history.
-- Prefer browser English/Spanish, otherwise English; provide a language switch
-  and save account/local preference. Do not automatically translate authored text.
+- Within the English/Spanish/Dutch scope confirmed by
+  [DEC-062](decision-log.md#dec-062), prefer a supported browser language, otherwise
+  English; provide a manual language switch and save account/local preference.
+  This selection/fallback behavior remains a Derived recommendation under DEC-060.
+  Do not automatically translate authored text.
 - Store an instant plus IANA location time zone. Reject nonexistent local times
   and disambiguate repeated clock-change times. Show time zone/offset. Do not
   hard-code one offset per country.
@@ -140,9 +143,12 @@ transactional state changes, durable idempotent jobs and automated purge/recover
 checks. Routine logs exclude contacts/credentials and expire within 30 days. No
 third-party behavioral analytics SDK is included in MVP.
 
-Concrete hosting/database/map/authentication/SMTP vendors, infrastructure budgets
-and load/service targets are deliberately deferred with implementation under
-DEC-055. They must satisfy the fixed data, browser and quality rules before deployment.
+DEC-061 subsequently selects Supabase as the backend, independently of this
+delegation. Its [component mapping](../architecture/technical-overview.md) is labeled
+Derived recommendation. Frontend/maps/SMTP providers, infrastructure budgets and
+load/service targets remain deferred. Resolve [Q-019](../planning/open-questions.md#q-019)
+and [Q-020](../planning/open-questions.md#q-020) while preserving the fixed data,
+browser and quality rules before deployment.
 
 Future pilot evaluation can use aggregate operational counts and voluntary feedback
 about joining, coordination and reconfirmation. No numerical growth/revenue target,

@@ -5,21 +5,44 @@
 This package contains the completed current Markdown product baseline, exact
 available source excerpts, decision/supersession history, selected derived defaults,
 MVP requirements and acceptance criteria, journeys, contact privacy, logical domain
-model, technology-neutral architecture, roadmap, maintenance guidance and validation.
+model, selected Supabase backend with a derived component mapping, roadmap,
+maintenance guidance and validation. Earlier technology neutrality remains in
+decision history; remaining provider choices and launch gates are Open.
 
 The repository code/documentation is AGPL-3.0-only. No app implementation,
 deployment, provider resources or spending commitments are included.
 
-Delivery formats are a repo-ready ZIP, an extracted documentation directory for
+## Current Supabase and Dutch/Netherlands follow-up — 2026-11-04
+
+The owner selected Supabase in [DEC-061](decisions/decision-log.md#dec-061) and added
+Dutch plus the Netherlands market in [DEC-062](decisions/decision-log.md#dec-062).
+The follow-up updates documentation only on `codex/select-supabase-mvp`, based on
+the existing `main` at `be4521d`. A PR can now target `main`; neither a default-branch
+push nor a merge is part of this update. The task handoff records publication/PR
+outcome and validation actually performed.
+
+[SRC-031](sources/conversation-evidence.md#src-031) records the new remote inspection.
+It supersedes the previous delivery limitation as a current observation, without
+rewriting the earlier evidence. The connector reports read access only; the
+existing local Git setup is an alternative publication route. If publication
+fails, deliver a bundle of the dedicated branch and report the failure.
+
+Supabase Free feasibility and public password-reset delivery remain
+[Open launch gates](planning/open-questions.md#q-019). No provider project, database
+schema, application, deployment or spending commitment is included.
+
+## Original package delivery — historical
+
+Original delivery formats were a repo-ready ZIP, an extracted documentation directory for
 review, and a portable Git bundle containing the dedicated documentation branch.
 The accompanying delivery report records the exact commit, artifact hashes and
 archive/bundle verification. Existing destination files were not overwritten.
 
-## Git outcome
+## Original Git outcome — historical
 
 Destination: [mohamadrezakoohkan/open-sports](https://github.com/mohamadrezakoohkan/open-sports).
 
-Initial and final inspection found an accessible public repository with no commits
+The original initial and final inspections found an accessible public repository with no commits
 or remote branches. Metadata names main as default, but no actual base branch exists.
 The connector has read access and no push permission; local GitHub authentication
 was available but no remote write was attempted. See [final inspection](sources/conversation-evidence.md#src-028).
@@ -66,6 +89,7 @@ references and no older cursor. Earlier history and those reply bodies remain
 unavailable. Current answers establish present requirements without reconstructing
 missing text. See [source coverage](sources/recovery-status.md).
 
-Product scenarios are specified but Not run because no app exists here. Technology
-selection is deliberately deferred. Documentation checks do not establish product
+Product scenarios are specified but Not run because no app exists here. Supabase
+is now selected; remaining stack and operational questions are recorded separately.
+Documentation checks do not establish product
 performance, accessibility conformance, security certification or legal compliance.

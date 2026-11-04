@@ -11,6 +11,7 @@ Current decisions do not recover that missing history. See [source coverage](doc
 
 ## Read first
 
+- [How to read all the documentation](docs/reading-guide.md)
 - [Vision, users and principles](docs/product/vision-and-principles.md)
 - [MVP scope](docs/product/mvp.md) and [requirements with acceptance criteria](docs/product/requirements.md)
 - [Contact publication/privacy](docs/product/communication-and-privacy.md)
